@@ -12,10 +12,10 @@ import com.itau.TransactionsApi.domain.Transaction;
 @Component
 public class TransactionRepository {
 	
-	private List<Transaction> transactions= new ArrayList<>();
+	private final List<Transaction> transactions= new ArrayList<>();
 
-	public boolean addTransaction(Transaction transaction) {
-		return transactions.add(transaction);
+	public void addTransaction(Transaction transaction) {
+		transactions.add(transaction);
 	}
 	
 	public void clearTransactions() {
@@ -31,7 +31,7 @@ public class TransactionRepository {
 				.mapToDouble(transaction -> transaction.getValor().doubleValue())
 				.summaryStatistics();
 		
-		if(transactions.isEmpty() || stats.getCount() == 0) {
+		if(stats.getCount() == 0) {
 			return new Statistics(0L,0.0,0.0,0.0,0.0);
 		}
 		
