@@ -4,11 +4,11 @@ import java.util.DoubleSummaryStatistics;
 
 public class Statistics{
 	
-	long count; 
-	double sum;
-	double avg;
-	double min;
-	double max;
+	private long count; 
+	private double sum;
+	private double avg;
+	private double min;
+	private double max;
 
 	public Statistics(Long count, Double sum, Double avg, Double min, Double max) {
 		this.count = count;
