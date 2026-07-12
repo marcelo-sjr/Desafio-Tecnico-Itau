@@ -5,6 +5,7 @@ import java.time.OffsetDateTime;
 import java.util.Objects;
 
 public class Transaction {
+	
 	private BigDecimal valor;
 	private OffsetDateTime dataHora;
 	
@@ -14,18 +15,18 @@ public class Transaction {
 		this.dataHora = dataHora;
 	}
 	
+	public Transaction(TransactionRequest request) {
+		this.valor = request.valor();
+		this.dataHora = request.dataHora();
+	}
+	
 	public BigDecimal getValor() {
 		return valor;
-	}
-	public void setValor(BigDecimal valor) {
-		this.valor = valor;
 	}
 	public OffsetDateTime getDataHora() {
 		return dataHora;
 	}
-	public void setDataHora(OffsetDateTime dataHora) {
-		this.dataHora = dataHora;
-	}
+
 
 	@Override
 	public int hashCode() {

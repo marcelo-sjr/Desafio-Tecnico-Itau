@@ -5,9 +5,12 @@ import java.util.ArrayList;
 import java.util.DoubleSummaryStatistics;
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.itau.TransactionsApi.domain.Statistics;
 import com.itau.TransactionsApi.domain.Transaction;
 
+@Component
 public class TransactionRepository {
 	
 	private List<Transaction> transactions= new ArrayList<>();
