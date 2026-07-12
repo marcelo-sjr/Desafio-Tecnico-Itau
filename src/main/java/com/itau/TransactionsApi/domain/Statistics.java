@@ -2,6 +2,9 @@ package com.itau.TransactionsApi.domain;
 
 import java.util.DoubleSummaryStatistics;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@JsonPropertyOrder({"count","sum","avg","min","max"})
 public class Statistics{
 	
 	private long count; 
