@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.itau.TransactionsApi.domain.Statistics;
 import com.itau.TransactionsApi.domain.Transaction;
 import com.itau.TransactionsApi.domain.TransactionRequest;
-import com.itau.TransactionsApi.exception.CastException;
 import com.itau.TransactionsApi.repository.TransactionRepository;
 
 @Service
@@ -33,9 +32,7 @@ public class TransactionService {
 	}
 	
 	public void saveTransaction(TransactionRequest dto) {
-		if(!repository.addTransaction(new Transaction(dto))) {
-			throw new CastException("Error while casting data.");
-		}
+		repository.addTransaction(new Transaction(dto));
 	}
 	
 	public void deleteAllTransactions() {

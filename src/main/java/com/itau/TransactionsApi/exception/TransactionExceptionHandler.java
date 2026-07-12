@@ -12,10 +12,6 @@ public class TransactionExceptionHandler {
 		return ResponseEntity.unprocessableContent().build();
 	}
 	
-	@ExceptionHandler(CastException.class)
-	public ResponseEntity<Void> castExceptionHandler(CastException e){
-		return ResponseEntity.badRequest().build();
-	}
 	
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<Void> globalExceptionHandler(Exception e){
