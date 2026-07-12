@@ -5,6 +5,7 @@ import java.time.OffsetDateTime;
 
 import org.springframework.stereotype.Service;
 
+import com.itau.TransactionsApi.domain.Statistics;
 import com.itau.TransactionsApi.domain.Transaction;
 import com.itau.TransactionsApi.domain.TransactionRequest;
 import com.itau.TransactionsApi.exception.CastException;
@@ -39,5 +40,9 @@ public class TransactionService {
 	
 	public void deleteAllTransactions() {
 		repository.clearTransactions();
+	}
+	
+	public Statistics calculateStatistics() {
+		return repository.lastMinuteTransactions();
 	}
 }

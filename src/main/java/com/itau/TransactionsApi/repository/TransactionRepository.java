@@ -2,7 +2,6 @@ package com.itau.TransactionsApi.repository;
 
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
-import java.util.DoubleSummaryStatistics;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -24,12 +23,18 @@ public class TransactionRepository {
 	}
 	
 	public Statistics lastMinuteTransactions(){
-		DoubleSummaryStatistics statistics = transactions.stream().filter(
-				transaction -> transaction.getDataHora()
-				.isAfter(OffsetDateTime.now().minusMinutes(1)))
+		
+		OffsetDateTime lastMinute = OffsetDateTime.now().minusSeconds(60);
+		
+		var stats = transactions.stream().filter(
+				transaction -> transaction.getDataHora().isAfter(lastMinute))
 				.mapToDouble(transaction -> transaction.getValor().doubleValue())
 				.summaryStatistics();
 		
-		return new Statistics(statistics);
+		if(transactions.isEmpty() || stats.getCount() == 0) {
+			return new Statistics(0L,0.0,0.0,0.0,0.0);
+		}
+		
+		return new Statistics(stats);
 	}
 }
