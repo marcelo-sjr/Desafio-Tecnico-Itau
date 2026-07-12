@@ -19,7 +19,7 @@ public class TransactionService {
 		this.repository = repository;
 	}
 	
-	public void validarTransacao(TransactionRequest dto) {
+	public void validateTransaction(TransactionRequest dto) {
 		
 		if(dto.valor().compareTo(BigDecimal.ZERO) < 0) {
 			throw new IllegalArgumentException("Value must be higher or equal to 0!");
@@ -31,9 +31,13 @@ public class TransactionService {
 		
 	}
 	
-	public void salvarTransacao(TransactionRequest dto) {
+	public void saveTransaction(TransactionRequest dto) {
 		if(!repository.addTransaction(new Transaction(dto))) {
 			throw new CastException("Error while casting data.");
 		}
+	}
+	
+	public void deleteAllTransactions() {
+		repository.clearTransactions();
 	}
 }
