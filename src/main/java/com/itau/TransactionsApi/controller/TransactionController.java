@@ -25,8 +25,7 @@ public class TransactionController {
 	
 	@PostMapping
 	ResponseEntity<Void> newTransaction(@RequestBody @Valid TransactionRequest dto) {
-		service.validateTransaction(dto);
-		service.saveTransaction(dto);
+		service.createTransaction(dto);
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 	

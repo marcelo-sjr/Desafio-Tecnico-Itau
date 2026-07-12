@@ -20,7 +20,7 @@ public class TransactionService {
 		this.repository = repository;
 	}
 	
-	public void validateTransaction(TransactionRequest dto) {
+	private void validateTransaction(TransactionRequest dto) {
 		
 		if(dto.valor().compareTo(BigDecimal.ZERO) < 0) {
 			throw new InvalidTransactionException("Value must be higher or equal to 0!");
@@ -31,7 +31,8 @@ public class TransactionService {
 		}
 	}
 	
-	public void saveTransaction(TransactionRequest dto) {
+	public void createTransaction(TransactionRequest dto) {
+		validateTransaction(dto);
 		repository.addTransaction(new Transaction(dto));
 	}
 	
